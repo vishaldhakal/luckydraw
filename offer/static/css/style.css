@@ -1,0 +1,97 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  font: 400 15px'Lato', sans-serif;
+  color: rgb(0, 0, 0);
+}
+
+.bgimg-1 {
+  position: relative;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.bgimg-1 {
+  background-image: url('../background.jpg');
+  height: 120%;
+}
+
+.caption {
+  position: absolute;
+  left: 0;
+  top: 5%;
+  width: 100%;
+  text-align: center;
+  color: #000;
+}
+
+.caption span.border {
+  background-color: #111;
+  color: rgb(0, 0, 0);
+  padding: 18px;
+  font-size: 25px;
+  letter-spacing: 10px;
+}
+
+h3 {
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  font: 20px 'Lato', sans-serif;
+  color: #111;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100%;
+}
+canvas {
+  position: absolute;
+  top: 0;
+}
+
+img {
+  width: 190px;
+}
+
+.gift {
+  margin: 0 auto;
+}
+
+.form {
+  text-align: left;
+}
+
+.card {
+  margin: 0 auto;
+}
+
+.card {
+  background-color: transparent;
+  color: rgb(0, 0, 0);
+}
+
+.popup {
+  font-size: 24px;
+  letter-spacing: 0.1 !important;
+  color: rgb(0, 0, 0);
+  font-weight: 900;
+}
+.popup2 {
+  font-size: 24px;
+  letter-spacing: 0.1 !important;
+  color: rgb(255, 255, 255);
+  font-weight: 900;
+}
+.form-control{
+  padding: 1rem;
+}
+
+.text {
+  font-size: larger;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+}
