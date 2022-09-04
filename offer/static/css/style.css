@@ -1,9 +1,29 @@
+@font-face {
+  font-family: Vivo;
+  font-weight: lighter;
+  src: url(../fonts/vivo-Light.otf);
+}
+@font-face {
+  font-family: Vivo;
+  font-weight:normal;
+  src: url(../fonts/vivo-Regular.otf);
+}
+@font-face {
+  font-family: Vivo;
+  font-weight:bolder;
+  src: url(../fonts/vivo-Bold.otf);
+}
+
 body,
 html {
   height: 100%;
   margin: 0;
-  font: 400 15px'Lato', sans-serif;
   color: rgb(0, 0, 0);
+}
+*{
+  font-family: 'Vivo' !important;
+  font-weight: normal;
+  box-sizing: border-box;
 }
 
 .bgimg-1 {
@@ -16,7 +36,12 @@ html {
 .bgimg-1 {
   background-image: url('../homepagebg.png');
   max-width: 100%;
-  height: 100%;
+  height: 122%;
+}
+.form-control:active,.form-control:focus{
+  box-shadow: none !important;
+  outline: 0px !important;
+  border-color: green;
 }
 .bgimg-11 {
   position: relative;
@@ -59,10 +84,17 @@ html {
 }
 
 h3 {
-  letter-spacing: 5px;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  font: 20px 'Lato', sans-serif;
   color: #111;
+  font-weight: bolder;
+}
+.poss{
+  position: absolute;
+  top: -1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
 }
 
 body {
@@ -99,7 +131,6 @@ canvas {
 
 .popup {
   font-size: 24px;
-  letter-spacing: 0.1 !important;
   color: rgb(0, 0, 0);
   font-weight: 900;
 }

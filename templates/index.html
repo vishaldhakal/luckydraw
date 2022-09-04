@@ -21,61 +21,68 @@
           <div class="caption">
                <div class="form container mt-5">
                     <div class="card" style="max-width: 80rem">
-                         <div class="card-body bg-light rounded-2 p-2 p-md-4">
-                              <h3 class="mb-3 popup">Please fill up the form</h3>
+                         <div class="card-body bg-light rounded-2 p-2 p-md-4 px-4">
+                              <h3 class="btn btn-lg btn-mine text-white poss text-center">Please fill up the form</h3>
                               <form class="pt-2" action="{% url 'register_customer' %}" method="POST">
-                                   <h3 class="text-danger">{{errormsg}}</h3>
+                                   {% if error %}
+                                   <h5 class="text-danger mt-5 mb-4">sdc</h5>
+                                   {% else %}
+                                   <h5 class="text-danger my-5"></h5>
+                                   {% endif %}
                                    {% csrf_token %}
-                                   <p class="bg-light p-3">
-                                        {{error}}
-                                   </p>
                                    <div class="row row-cols-1 row-cols-md-2">
                                         <div class="mb-3 col">
-                                             <label for="customerName" class="form-label">Customer name</label>
+                                             <label for="customerName" class="form-label">Customer name<span
+                                                       class="text-danger">*</span></label>
                                              <input type="text" class="form-control" id="customerName"
                                                   name="customer_name" required />
                                         </div>
 
                                         <!-- contact number -->
                                         <div class="mb-3 col">
-                                             <label for="contactNumber" class="form-label">Contact number</label>
+                                             <label for="contactNumber" class="form-label">Contact number<span
+                                                       class="text-danger">*</span></label>
                                              <input type="text" class="form-control" id="contactNumber"
                                                   name="phone_number" required />
                                         </div>
 
                                         <!-- shop name -->
                                         <div class="mb-3 col">
-                                             <label for="shopName" class="form-label">Shop name</label>
+                                             <label for="shopName" class="form-label">Shop name<span
+                                                       class="text-danger">*</span></label>
                                              <input type="text" class="form-control" id="shopName" name="shop_name"
                                                   required />
                                         </div>
 
                                         <!-- sold area -->
                                         <div class="mb-3 col">
-                                             <label for="area" class="form-label">Sold area</label>
+                                             <label for="area" class="form-label">Sold area<span
+                                                       class="text-danger">*</span></label>
                                              <input type="text" class="form-control" id="area" name="sold_area"
                                                   required />
                                         </div>
 
                                         <!-- phone model -->
                                         <div class="mb-3 col">
-                                             <label for="phoneModel" class="form-label">Phone model</label>
+                                             <label for="phoneModel" class="form-label">Phone model<span
+                                                       class="text-danger">*</span></label>
                                              <input type="text" class="form-control" id="phoneModel" name="phone_model"
                                                   required />
                                         </div>
 
                                         <!-- imei number -->
                                         <div class="mb-3 col">
-                                             <label for="imeiNumber" class="form-label">IMEI number</label>
+                                             <label for="imeiNumber" class="form-label">IMEI number<span
+                                                       class="text-danger">*</span> </label>
                                              <input type="text" class="form-control" id="imeiNumber" name="imei_number"
                                                   required />
                                         </div>
 
                                         <!-- about campaign -->
                                         <div class="mb-3 col">
-                                             <label for="aboutCampaign" class="mb-3">How you know about campaign
+                                             <label for="aboutCampaign" class="mb-2">How you know about campaign
                                                   ?</label>
-                                             <select class="form-select" aria-label="How you know about campaign ?"
+                                             <select class="form-select py-3" aria-label="How you know about campaign ?"
                                                   id="aboutCampaign" name="how_know_about_campaign">
                                                   <option selected value="Facebook Ads">Facebook Ads</option>
                                                   <option value="Google Ads">Google Ads</option>
@@ -86,7 +93,7 @@
                                    </div>
 
                                    <!-- submit button -->
-                                   <div class="d-flex justify-content-center py-5">
+                                   <div class="d-flex justify-content-center pb-5 pt-3">
                                         <input type="submit" class="btn btn-success btn-lg w-50" value="Submit"></input>
                                    </div>
                               </form>
