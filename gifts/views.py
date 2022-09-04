@@ -30,7 +30,7 @@ def registerCustomer(request):
         for cust in get_all_customers:
             if cust.imei == imei_number:
                 ctx = {
-                "errormsg":"This IMEI no is already registered by customer "+cust.customer_name
+                "error":"This IMEI no is already registered by customer "+cust.customer_name
                 }
                 return render(request, "index.html",ctx) 
 
