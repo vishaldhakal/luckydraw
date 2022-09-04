@@ -19,14 +19,11 @@
      <!-- Optional JavaScript; choose one of the two! -->
      <div class="bgimg-1">
           <div class="caption">
-               <div class="logo">
-                    <img src="{% static 'logo.png' %}" alt="logo" />
-               </div>
                <div class="form container mt-5">
                     <div class="card" style="max-width: 80rem">
                          <div class="card-body bg-light rounded-2 p-2 p-md-4">
                               <h3 class="mb-3 popup">Please fill up the form</h3>
-                              <form class="pt-4" action="{% url 'register_customer' %}" method="POST">
+                              <form class="pt-2" action="{% url 'register_customer' %}" method="POST">
                                    <h3 class="text-danger">{{errormsg}}</h3>
                                    {% csrf_token %}
                                    <p class="bg-light p-3">

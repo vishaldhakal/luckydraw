@@ -16,23 +16,20 @@
 </head>
 
 <body>
-     <div class="bgimg-1">
+     <div class="bgimg-11">
           <div class="caption">
-               <div class="logo">
-                    <img src="{% static 'logo.png' %}" alt="logo" />
-               </div>
-               <div class="container mt-5">
-                    <div class="card" style="max-width: 80rem">
+               <div class="container mt-minee">
+                    <div class="card border-nonee" style="max-width: 80rem">
                          {% if customer.gift %}
                          <div class="card-body">
-                              <h3 class="mb-3 popup2">Congratulations</h3>
                               <h4 class="popup2">{{customer.customer_name}}</span>
                          </div>
-                         <div>
-                              <img class="gift mb-5" src="http://127.0.0.1:8000/media/{{customer.gift.image_url}}"
-                                   alt="Gift Image" />
-                              <h3 class="text text-white">You have won</h3>
-                              <h1 class="popup2">{{customer.gift.name}}</h1>
+                         <div class="d-flex flex-column">
+                              <img class="gift img-fluid2 mb-5"
+                                   src="http://127.0.0.1:8000/media/{{customer.gift.image_url}}" alt="Gift Image" />
+                              <button class="btn btn-dark btn-mine border-0 btn-lg">
+                                   You have won {{customer.gift.name}}
+                              </button>
                          </div>
                          {% else %}
                          <h1 class="popup2">{{customer.prize_details}}</h1>
