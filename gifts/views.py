@@ -24,6 +24,7 @@ def registerCustomer(request):
         how_know_about_campaign = request.POST["how_know_about_campaign"]
         
         """ IMEI no check """
+        """ IMEI no check """
 
         get_all_customers = Customer.objects.all()
 
