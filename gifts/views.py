@@ -35,11 +35,10 @@ def registerCustomer(request):
                 return render(request, "index.html",ctx) 
 
 
-
         length_of_imei = len(imei_number)
         if(length_of_imei != 15 or imei_number[-2:]!="11"):
             ctx = {
-                "errormsg":"Invalid IMEI no"
+                "error":"Invalid IMEI no"
             }
             return render(request, "index.html",ctx) 
 
