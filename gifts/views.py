@@ -2,12 +2,27 @@ from django.shortcuts import render, HttpResponse, redirect
 from rest_framework.response import Response
 from .models import Customer,Sales,Offers,Gift,IMEINO
 from datetime import date
+import csv
 
 
 def index(request):
     return render(request, "index.html")
 
 def indexWithError(request):
+    ctx = {
+        "error":"Invalid IMEI"
+    }
+    return render(request, "index.html",ctx)
+
+def uploadIMEI(request):
+    Imee = IMEINO.objects.all()
+    Imee.delete()
+    with open('datas.csv', newline='') as f:
+        reader = csv.reader(f)
+        data = list(reader)
+        for row in data:
+            okk = IMEINO.objects.create(imei_no=row[0])
+            okk.save()
     ctx = {
         "error":"Invalid IMEI"
     }
@@ -38,9 +53,9 @@ def registerCustomer(request):
         imei_check=False
         get_all_imeis = IMEINO.objects.filter(used=False)
         for imeei in get_all_imeis:
-            if imeei==imei_number:
+            
+            if imei_number==str(imeei):
                 imei_check=True
-                break
 
         if(imei_check==False):
             ctx = {
@@ -50,6 +65,9 @@ def registerCustomer(request):
 
         customer = Customer.objects.create(customer_name=customer_name,phone_number=contact_number,shop_name=shop_name,sold_area=sold_area,phone_model=phone_model,sale_status="SOLD",imei=imei_number,how_know_about_campaign=how_know_about_campaign)
         customer.save()
+        imeiii = IMEINO.objects.get(imei_no=imei_number)
+        imeiii.used = True
+        imeiii.save()
         giftassign = False
 
         """ Select Gift """

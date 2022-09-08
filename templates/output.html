@@ -16,29 +16,34 @@
 </head>
 
 <body>
+     {% if customer.gift %}
      <div class="bgimg-11">
           <div class="caption">
                <div class="container mt-minee">
                     <div class="card border-nonee" style="max-width: 80rem">
-                         {% if customer.gift %}
                          <div class="card-body">
                               <h4 class="popup2">{{customer.customer_name}}</span>
                          </div>
                          <div class="d-flex flex-column">
                               <img class="gift img-fluid2 mb-5"
-                                   src="https://luckydrawvivo.herokuapp.com/media/{{customer.gift.image_url}}"
-                                   alt="Gift Image" />
+                                   src="https://vivodashain.com/media/{{customer.gift.image_url}}" alt="Gift Image" />
                               <button class="btn btn-dark btn-mine border-0 btn-lg">
                                    You have won {{customer.gift.name}}
                               </button>
                          </div>
-                         {% else %}
-                         <h1 class="popup2">{{customer.prize_details}}</h1>
-                         {% endif %}
                     </div>
                </div>
           </div>
      </div>
+     {% else %}
+     <div class="bgimg-1">
+          <div class="caption">
+               <div class="container mt-minee">
+                    <h1 class="popup2">Happy Bijaya Dashami 2079! Better Luck Next Time</h1>
+               </div>
+          </div>
+     </div>
+     {% endif %}
 
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
           integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

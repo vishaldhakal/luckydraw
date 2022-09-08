@@ -22,7 +22,7 @@ class IMEINO(models.Model):
    used = models.BooleanField(default=False)
 
    def __str__(self):
-      return self.imei_no + self.used
+      return self.imei_no
 
 class Offers(models.Model):
 
@@ -39,7 +39,7 @@ class Offers(models.Model):
    offer_condtion_value = models.IntegerField()
    
    def __str__(self):
-      return "Offer on "+self.date_valid+" for "+self.quantity +self.gift.name
+      return "Offer on "+self.gift.name
 
 class Customer(models.Model):
 
