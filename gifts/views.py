@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from rest_framework.response import Response
-from .models import Customer,Sales,Offers,Gift
+from .models import Customer,Sales,Offers,Gift,IMEINO
 from datetime import date
 
 
@@ -34,12 +34,17 @@ def registerCustomer(request):
                 "error":"This IMEI no is already registered by customer "+cust.customer_name
                 }
                 return render(request, "index.html",ctx) 
+        
+        imei_check=False
+        get_all_imeis = IMEINO.objects.filter(used=False)
+        for imeei in get_all_imeis:
+            if imeei==imei_number:
+                imei_check=True
+                break
 
-
-        length_of_imei = len(imei_number)
-        if(length_of_imei != 15 or imei_number[-2:]!="11"):
+        if(imei_check==False):
             ctx = {
-                "error":"Invalid IMEI no"
+                "error":"Invalid IMEI no entered"
             }
             return render(request, "index.html",ctx) 
 
