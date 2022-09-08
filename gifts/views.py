@@ -14,7 +14,7 @@ def indexWithError(request):
     }
     return render(request, "index.html",ctx)
 
-def uploadIMEI(request):
+""" def uploadIMEI(request):
     Imee = IMEINO.objects.all()
     Imee.delete()
     with open('datas.csv', newline='') as f:
@@ -27,6 +27,59 @@ def uploadIMEI(request):
         "error":"Invalid IMEI"
     }
     return render(request, "index.html",ctx)
+
+def uploadCustomer2(request):
+    with open('datas2.csv', newline='') as f:
+        reader = csv.reader(f)
+        data = list(reader)
+        for row in data:
+            customer = Customer.objects.create(customer_name=row[0],phone_number=row[3],shop_name=row[1],sold_area=row[2],phone_model=row[4],sale_status="SOLD",imei=row[6],how_know_about_campaign=row[7])
+            customer.save()
+            imeiii = IMEINO.objects.get(imei_no=row[6])
+            imeiii.used = True
+            imeiii.save()
+    ctx = {
+        "error":"Invalid IMEI"
+    }
+    return render(request, "index.html",ctx) """
+
+def downloadData(request):
+    # Get all data from UserDetail Databse Table
+    users = Customer.objects.all()
+
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="all.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['customer_name', 'shop_name', 'sold_area', 'phone_number','phone_model','gift','imei','date_of_purchase','how_know_about_campaign'])
+
+    for user in users:
+        if user.gift:
+            writer.writerow([user.customer_name,user.shop_name,user.sold_area,user.phone_number,user.phone_model,user.gift.name,user.imei,user.date_of_purchase,user.how_know_about_campaign])
+        else:
+            writer.writerow([user.customer_name,user.shop_name,user.sold_area,user.phone_number,user.phone_model,user.gift,user.imei,user.date_of_purchase,user.how_know_about_campaign])
+    return response
+
+def downloadDataToday(request):
+    # Get all data from UserDetail Databse Table
+    today_date = date.today()
+    users = Customer.objects.filter(date_of_purchase=today_date)
+
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="today.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['customer_name', 'shop_name', 'sold_area', 'phone_number','phone_model','gift','imei','date_of_purchase','how_know_about_campaign'])
+
+    for user in users:
+        if user.gift:
+            writer.writerow([user.customer_name,user.shop_name,user.sold_area,user.phone_number,user.phone_model,user.gift,user.imei,user.date_of_purchase,user.how_know_about_campaign])
+        else:
+            writer.writerow([user.customer_name,user.shop_name,user.sold_area,user.phone_number,user.phone_model,user.gift.name,user.imei,user.date_of_purchase,user.how_know_about_campaign])
+    return response
+
 
 def registerCustomer(request):
     if request.method == "POST":
@@ -89,7 +142,7 @@ def registerCustomer(request):
 
         for offer in offers_all:
             if offer.type_of_offer == "After every certain sale":
-                if (((get_sale_count+1)%offer.offer_condtion_value == 0)) and (offer.quantity > 0):
+                if (((get_sale_count)%offer.offer_condtion_value == 0)) and (offer.quantity > 0):
                     """ Grant Gift """
                     qty = offer.quantity
                     customer.gift = offer.gift
@@ -99,7 +152,7 @@ def registerCustomer(request):
                     giftassign = True
                     break
             else:
-                if (get_sale_count+1  == offer.offer_condtion_value) and (offer.quantity > 0):
+                if (get_sale_count  == offer.offer_condtion_value) and (offer.quantity > 0):
                     """ Grant Gift """
                     qty = offer.quantity
                     customer.gift = offer.gift
