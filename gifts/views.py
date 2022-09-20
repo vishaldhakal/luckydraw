@@ -14,9 +14,7 @@ def indexWithError(request):
     }
     return render(request, "index.html",ctx)
 
-""" def uploadIMEI(request):
-    Imee = IMEINO.objects.all()
-    Imee.delete()
+def uploadIMEI(request):
     with open('datas.csv', newline='') as f:
         reader = csv.reader(f)
         data = list(reader)
@@ -29,19 +27,27 @@ def indexWithError(request):
     return render(request, "index.html",ctx)
 
 def uploadCustomer2(request):
+    custs = Customer.objects.all()
+    custs.delete()
     with open('datas2.csv', newline='') as f:
         reader = csv.reader(f)
         data = list(reader)
         for row in data:
-            customer = Customer.objects.create(customer_name=row[0],phone_number=row[3],shop_name=row[1],sold_area=row[2],phone_model=row[4],sale_status="SOLD",imei=row[6],how_know_about_campaign=row[7])
-            customer.save()
+            if(row[5]!=''):
+                gifts = Gift.objects.get(name=row[5])
+                customer = Customer.objects.create(customer_name=row[0],phone_number=row[3],shop_name=row[1],sold_area=row[2],phone_model=row[4],sale_status="SOLD",imei=row[6],how_know_about_campaign=row[8],date_of_purchase=row[7],gift=gifts)
+                customer.save()
+            else:
+                customer = Customer.objects.create(customer_name=row[0],phone_number=row[3],shop_name=row[1],sold_area=row[2],phone_model=row[4],sale_status="SOLD",imei=row[6],how_know_about_campaign=row[8],date_of_purchase=row[7])
+                customer.save()
+
             imeiii = IMEINO.objects.get(imei_no=row[6])
             imeiii.used = True
             imeiii.save()
     ctx = {
         "error":"Invalid IMEI"
     }
-    return render(request, "index.html",ctx) """
+    return render(request, "index.html",ctx)
 
 def downloadData(request):
     # Get all data from UserDetail Databse Table
