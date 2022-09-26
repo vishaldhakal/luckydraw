@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from rest_framework.response import Response
 from .models import Customer,Sales,Offers,Gift,IMEINO
-from datetime import date
+from datetime import date, timedelta
 import csv
 
 
@@ -15,6 +15,8 @@ def indexWithError(request):
     return render(request, "index.html",ctx)
 
 def uploadIMEI(request):
+    imee = IMEINO.objects.all()
+    imee.delete()
     with open('datas.csv', newline='') as f:
         reader = csv.reader(f)
         data = list(reader)
@@ -40,10 +42,12 @@ def uploadCustomer2(request):
             else:
                 customer = Customer.objects.create(customer_name=row[0],phone_number=row[3],shop_name=row[1],sold_area=row[2],phone_model=row[4],sale_status="SOLD",imei=row[6],how_know_about_campaign=row[8],date_of_purchase=row[7])
                 customer.save()
-
-            imeiii = IMEINO.objects.get(imei_no=row[6])
-            imeiii.used = True
-            imeiii.save()
+            try:
+                imeiii = IMEINO.objects.get(imei_no=row[6])
+                imeiii.used = True
+                imeiii.save()
+            except:
+                pass
     ctx = {
         "error":"Invalid IMEI"
     }
@@ -70,6 +74,25 @@ def downloadData(request):
 def downloadDataToday(request):
     # Get all data from UserDetail Databse Table
     today_date = date.today()
+    users = Customer.objects.filter(date_of_purchase=today_date)
+
+    # Create the HttpResponse object with the appropriate CSV header.
+    response = HttpResponse(content_type='text/csv')
+    response['Content-Disposition'] = 'attachment; filename="today.csv"'
+
+    writer = csv.writer(response)
+    writer.writerow(['customer_name', 'shop_name', 'sold_area', 'phone_number','phone_model','gift','imei','date_of_purchase','how_know_about_campaign'])
+
+    for user in users:
+        if user.gift:
+            writer.writerow([user.customer_name,user.shop_name,user.sold_area,user.phone_number,user.phone_model,user.gift.name,user.imei,user.date_of_purchase,user.how_know_about_campaign])
+        else:
+            writer.writerow([user.customer_name,user.shop_name,user.sold_area,user.phone_number,user.phone_model,user.gift,user.imei,user.date_of_purchase,user.how_know_about_campaign])
+    return response
+
+def downloadDataYesterday(request):
+    # Get all data from UserDetail Databse Table
+    today_date = date.today()- timedelta(days = 1)
     users = Customer.objects.filter(date_of_purchase=today_date)
 
     # Create the HttpResponse object with the appropriate CSV header.
