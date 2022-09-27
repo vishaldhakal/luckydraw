@@ -15,9 +15,9 @@ def indexWithError(request):
     return render(request, "index.html",ctx)
 
 def uploadIMEI(request):
-    imee = IMEINO.objects.all()
-    imee.delete()
-    with open('datas.csv', newline='') as f:
+    """ imee = IMEINO.objects.all()
+    imee.delete() """
+    with open('datas3.csv', newline='') as f:
         reader = csv.reader(f)
         data = list(reader)
         for row in data:
