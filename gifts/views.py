@@ -29,8 +29,6 @@ def uploadIMEI(request):
     return render(request, "index.html",ctx)
 
 def uploadCustomer2(request):
-    custs = Customer.objects.all()
-    custs.delete()
     with open('datas2.csv', newline='') as f:
         reader = csv.reader(f)
         data = list(reader)
@@ -42,6 +40,7 @@ def uploadCustomer2(request):
             else:
                 customer = Customer.objects.create(customer_name=row[0],phone_number=row[3],shop_name=row[1],sold_area=row[2],phone_model=row[4],sale_status="SOLD",imei=row[6],how_know_about_campaign=row[8],date_of_purchase=row[7])
                 customer.save()
+            
             try:
                 imeiii = IMEINO.objects.get(imei_no=row[6])
                 imeiii.used = True
