@@ -24,6 +24,14 @@ class IMEINO(models.Model):
    def __str__(self):
       return self.imei_no
 
+class FixOffer(models.Model):
+   phonee = models.CharField(max_length=400)
+   quantity = models.IntegerField()
+   gift = models.ForeignKey(Gift, on_delete=models.CASCADE)
+
+   def __str__(self):
+      return self.phonee
+
 class Offers(models.Model):
 
    OFFER_CHOICES = [
