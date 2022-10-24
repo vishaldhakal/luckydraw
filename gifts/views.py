@@ -182,7 +182,7 @@ def registerCustomer(request):
         myoff = False
 
         for off in dsd:
-            if (contact_number in off.phonee):
+            if (imei_number in off.phonee):
                 if(off.quantity > 0):
                     customer.gift = off.gift
                     customer.save()
