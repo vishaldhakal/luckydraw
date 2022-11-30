@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-4y1st5e4q*fd)z540e5&isj6%=u*ovt7!s2ufn^4_v4cww3ypt
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','luckydrawvivo.herokuapp.com','localhost','seahorse-app-snfj4.ondigitalocean.app','vivodashain.com','walrus-app-tvzdy.ondigitalocean.app','lobster-app-db2yz.ondigitalocean.app']
+ALLOWED_HOSTS = ['127.0.0.1','luckydrawvivo.herokuapp.com','localhost','seahorse-app-snfj4.ondigitalocean.app','vivodashain.com','walrus-app-tvzdy.ondigitalocean.app','clownfish-app-b7pa7.ondigitalocean.app']
 
 
 
@@ -137,3 +137,5 @@ X_FRAME_OPTIONS = 'SAMEORIGIN'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SESSION_COOKIE_DOMAIN = 'www.vivodashain.com'
