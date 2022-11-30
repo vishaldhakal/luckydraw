@@ -8,15 +8,20 @@ import csv
 def index(request):
     return render(request, "index.html")
 
+def adminIndex(request):
+    customerss = Customer.objects.all()
+    ctx = {
+        "customers":customerss
+    }
+    return render(request, "admin/index.html",ctx)
+
 def indexWithError(request):
     ctx = {
         "error":"Invalid IMEI"
     }
     return render(request, "index.html",ctx)
 
-def uploadIMEI(request):
-    """ imee = IMEINO.objects.all()
-    imee.delete() """
+""" def uploadIMEI(request):
     with open('datas3.csv', newline='') as f:
         reader = csv.reader(f)
         data = list(reader)
@@ -26,7 +31,7 @@ def uploadIMEI(request):
     ctx = {
         "error":"Invalid IMEI"
     }
-    return render(request, "index.html",ctx)
+    return render(request, "index.html",ctx) """
 
 def reuseIMEI(request,str):
     okk = IMEINO.objects.get(imei_no=str)
@@ -37,7 +42,7 @@ def reuseIMEI(request,str):
     }
     return render(request, "index.html",ctx)
 
-def uploadCustomer2(request):
+""" def uploadCustomer2(request):
     with open('datas2.csv', newline='') as f:
         reader = csv.reader(f)
         data = list(reader)
@@ -59,7 +64,7 @@ def uploadCustomer2(request):
     ctx = {
         "error":"Invalid IMEI"
     }
-    return render(request, "index.html",ctx)
+    return render(request, "index.html",ctx) """
 
 def downloadData(request):
     # Get all data from UserDetail Databse Table

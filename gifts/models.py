@@ -12,7 +12,6 @@ class Sales(models.Model):
 class Gift(models.Model):
    name = models.CharField(max_length=400)
    image_url = models.FileField()
-   precedence = models.IntegerField()
 
    def __str__(self):
       return self.name
@@ -25,7 +24,7 @@ class IMEINO(models.Model):
       return self.imei_no
 
 class FixOffer(models.Model):
-   phonee = models.CharField(max_length=400)
+   imei_no = models.CharField(max_length=400)
    quantity = models.IntegerField()
    gift = models.ForeignKey(Gift, on_delete=models.CASCADE)
 
@@ -40,8 +39,7 @@ class Offers(models.Model):
       ]
 
    gift = models.ForeignKey(Gift, on_delete=models.CASCADE)
-   precedence = models.IntegerField()
-   date_valid = models.DateField(auto_now_add=False,auto_now=False)
+   date_valid= models.DateField(auto_now_add=False,auto_now=False)
    quantity = models.IntegerField()
    type_of_offer = models.CharField(max_length=800, choices=OFFER_CHOICES)
    offer_condtion_value = models.IntegerField()
@@ -64,7 +62,7 @@ class Customer(models.Model):
    phone_number = models.CharField(max_length=400)
    phone_model = models.CharField(max_length=400)
    sale_status = models.CharField(max_length=400,default="SOLD")
-   prize_details = models.CharField(max_length=900,default="Happy Vijaya Dashami & Dipawali 2079")
+   prize_details = models.CharField(max_length=900,default="Happy Sales Carnival")
    gift = models.ForeignKey(Gift, on_delete=models.CASCADE,null=True)
    imei = models.CharField(max_length=400)
    date_of_purchase = models.DateField(auto_now_add=True, auto_now=False)
@@ -72,3 +70,6 @@ class Customer(models.Model):
 
    def __str__(self):
       return self.customer_name
+
+   class Meta:
+        ordering = ("-date_of_purchase",)
