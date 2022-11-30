@@ -13,7 +13,7 @@ def adminIndex(request):
     ctx = {
         "customers":customerss
     }
-    return render(request, "admin/index.html",ctx)
+    return render(request, "admin2/index.html",ctx)
 
 def indexWithError(request):
     ctx = {
@@ -32,6 +32,28 @@ def indexWithError(request):
         "error":"Invalid IMEI"
     }
     return render(request, "index.html",ctx) """
+def deleteAllImeis(request):
+    allimeis = IMEINO.objects.all()
+    allimeis.delete()
+
+    ctx = {
+        "error":"All IMEI Deleted"
+    }
+    return render(request, "index.html",ctx)
+
+def uploadIMEInos(request):
+    filee = request.FILES["csvfile"]
+    file_data = filee.read().decode("utf-8")
+    lines = file_data.split("\n")
+
+    for line in lines:
+        okk = IMEINO.objects.create(imei_no=line)
+        okk.save()
+    
+    ctx = {
+        "error":"IMEI Uploaded"
+    }
+    return render(request, "index.html",ctx)
 
 def reuseIMEI(request,str):
     okk = IMEINO.objects.get(imei_no=str)

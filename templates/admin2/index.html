@@ -31,7 +31,47 @@
                               <a class="nav-link active" aria-current="page" href="#">Export All Data</a>
                          </li>
                          <li class="nav-item ms-2">
-                              <a class="nav-link active" aria-current="page" href="#">Import New IMEI</a>
+                              <!-- Button trigger modal -->
+                              <button type="button" class="btn btn-light bg-white" data-bs-toggle="modal"
+                                   data-bs-target="#exampleModal">
+                                   Import New IMEI
+                              </button>
+
+                              <!-- Modal -->
+                              <div class="modal fade" id="exampleModal" tabindex="-1"
+                                   aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                   <div class="modal-dialog">
+                                        <div class="modal-content">
+                                             <div class="modal-header">
+                                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Upload CSV File of
+                                                       IMEI</h1>
+                                                  <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                       aria-label="Close"></button>
+                                             </div>
+                                             <div class="modal-body">
+                                                  <form action="{% url 'uploadimei' %}" enctype="multipart/form-data"
+                                                       method="POST">
+                                                       {% csrf_token %}
+                                                       <div class="mb-3">
+                                                            <label for="formFile"
+                                                                 class="form-label fs-5 fw-bold pb-1">IMEI
+                                                                 nos [
+                                                                 CSV only
+                                                                 ]</label>
+                                                            <input class="form-control" type="file" id="csvfile"
+                                                                 name="csvfile">
+                                                       </div>
+                                                       <div class="py-3">
+                                                            <button type="submit" class="btn btn-primary btn-lg w-100">
+                                                                 Upload
+                                                            </button>
+                                                       </div>
+                                                  </form>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+
                          </li>
                          <li class="nav-item ms-2">
                               <a class="nav-link active" aria-current="page" href="#">Export Used IMEI</a>
