@@ -223,7 +223,7 @@ def registerCustomer(request):
         if myoff==False:
             for offer in offers_all:
                 if offer.type_of_offer == "After every certain sale":
-                    if (((get_sale_count)%offer.offer_condtion_value == 0)) and (offer.quantity > 0):
+                    if (((get_sale_count+1)%offer.offer_condtion_value == 0)) and (offer.quantity > 0):
                         """ Grant Gift """
                         qty = offer.quantity
                         customer.gift = offer.gift
@@ -233,7 +233,7 @@ def registerCustomer(request):
                         giftassign = True
                         break
                 else:
-                    if (get_sale_count  == offer.offer_condtion_value) and (offer.quantity > 0):
+                    if ((get_sale_count+1)  == offer.offer_condtion_value) and (offer.quantity > 0):
                         """ Grant Gift """
                         qty = offer.quantity
                         customer.gift = offer.gift
