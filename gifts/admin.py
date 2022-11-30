@@ -1,5 +1,4 @@
 from django.contrib import admin
-from import_export.admin import ImportExportActionModelAdmin
 from .models import Customer, Gift,Offers,Sales,IMEINO,FixOffer
 
 admin.site.register(Gift)
