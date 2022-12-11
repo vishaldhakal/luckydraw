@@ -1,11 +1,12 @@
 from django.contrib import admin
 from django.urls import path
-from .views import index, registerCustomer,deleteAllImeis,adminIndex,uploadIMEInos,indexWithError,downloadData,downloadDataToday,downloadDataYesterday,reuseIMEI
+from .views import index,uploadIMEI, registerCustomer,deleteAllImeis,adminIndex,uploadIMEInos,indexWithError,downloadData,downloadDataToday,downloadDataYesterday,reuseIMEI
 
 urlpatterns = [
     path('', index,name = 'index'),
     path('dashboard/', adminIndex,name = 'adminIndexx'),
     path('uploadimei/', uploadIMEInos,name = 'uploadimei'),
+    path('upload/', uploadIMEI,name = 'uploaddd'),
     path('delete-all-imei/', deleteAllImeis,name = 'deleteimeis'),
     path('', indexWithError,name = 'indexWithError'),
     path('output/', registerCustomer,name = 'register_customer'),

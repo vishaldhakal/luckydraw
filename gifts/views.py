@@ -21,17 +21,18 @@ def indexWithError(request):
     }
     return render(request, "index.html",ctx)
 
-""" def uploadIMEI(request):
-    with open('datas3.csv', newline='') as f:
+def uploadIMEI(request):
+    with open('datas.csv', newline='') as f:
         reader = csv.reader(f)
         data = list(reader)
         for row in data:
             okk = IMEINO.objects.create(imei_no=row[0])
             okk.save()
     ctx = {
-        "error":"Invalid IMEI"
+        "error":"Invalid Uploaded"
     }
-    return render(request, "index.html",ctx) """
+    return render(request, "index.html",ctx)
+
 def deleteAllImeis(request):
     allimeis = IMEINO.objects.all()
     allimeis.delete()
@@ -209,7 +210,7 @@ def registerCustomer(request):
         myoff = False
 
         for off in dsd:
-            if (imei_number in off.phonee):
+            if (imei_number in off.imei_no):
                 if(off.quantity > 0):
                     customer.gift = off.gift
                     customer.save()

@@ -27,7 +27,7 @@ class FixOffer(models.Model):
    gift = models.ForeignKey(Gift, on_delete=models.CASCADE)
 
    def __str__(self):
-      return self.phonee
+      return self.imei_no
 
 class Offers(models.Model):
 
